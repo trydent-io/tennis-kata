@@ -1,17 +1,13 @@
 package io.trydent.tennis;
 
-import io.trydent.tennis.Match.MatchImpl;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.TestInstance;
 
 import static com.google.common.truth.Truth.assertThat;
-import static org.junit.jupiter.api.TestInstance.Lifecycle.PER_CLASS;
 
-@TestInstance(PER_CLASS)
 class MatchTest {
   @Test
   void serverShouldMakePoint() {
-    final Match match = new MatchImpl(
+    final Match match = Match.with(
       new FakeScore(30, 40),
       new FakeScore(30, 30)
     );
@@ -25,7 +21,7 @@ class MatchTest {
 
   @Test
   void receiverShouldMakePoint() {
-    final Match match = new MatchImpl(
+    final Match match = Match.with(
       new FakeScore(15, 15),
       new FakeScore(15, 30)
     );
@@ -39,7 +35,7 @@ class MatchTest {
 
   @Test
   void receiverShouldWinsAtAdvantages() {
-    final Match match = new MatchImpl(
+    final Match match = Match.with(
       new FakeScore(40, 40),
       new FakeScore(46, 47)
     );
@@ -53,7 +49,7 @@ class MatchTest {
 
   @Test
   void finalScoreShouldBeFortyAndA() {
-    final Match match = new MatchImpl(
+    final Match match = Match.with(
       new FakeScore(40, 40),
       new FakeScore(40, 46)
     );
@@ -67,7 +63,7 @@ class MatchTest {
 
   @Test
   void finalScoreShouldBeFortyAndForty() {
-    final Match match = new MatchImpl(
+    final Match match = Match.with(
       new FakeScore(46, 40),
       new FakeScore(40, 40)
     );

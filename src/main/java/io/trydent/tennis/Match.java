@@ -3,6 +3,9 @@ package io.trydent.tennis;
 import static java.lang.String.format;
 
 public interface Match {
+  static Match with(final Score server, final Score receiver) {
+    return new MatchImpl(server, receiver);
+  }
 
   Match serverWinsPoint();
   Match receiverWinsPoint();
@@ -13,7 +16,7 @@ public interface Match {
     private final Score server;
     private final Score receiver;
 
-    public MatchImpl(final Score server, final Score receiver) {
+    private MatchImpl(final Score server, final Score receiver) {
       this.server = server;
       this.receiver = receiver;
     }
