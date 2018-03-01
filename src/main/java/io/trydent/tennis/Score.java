@@ -1,37 +1,35 @@
 package io.trydent.tennis;
 
-import java.util.function.IntSupplier;
+import java.util.function.Supplier;
 
-public interface Score extends IntSupplier {
-  static Score love() {
-    return new ScoreImpl(0);
+public final class Score implements Supplier<Integer> {
+  private int value;
+
+  private Score(int value) {
+    this.value = value;
   }
 
-  Score inc();
-  default int value() { return getAsInt(); }
+  public Score inc() {
+    value += value < 30
+      ? 15
+      : value < 40
+      ? 10
+      : value < 45
+      ? 5
+      : 1;
+    return this;
+  }
 
-  final class ScoreImpl implements Score {
-    private int value;
+  public int value() {
+    return value;
+  }
 
-    ScoreImpl(int value) {
-      this.value = value;
-    }
+  @Override
+  public Integer get() {
+    return value;
+  }
 
-    @Override
-    public Score inc() {
-      value += value < 30
-        ? 15
-        : value < 40
-        ? 10
-        : value < 45
-        ? 5
-        : 1;
-      return this;
-    }
-
-    @Override
-    public int getAsInt() {
-      return value;
-    }
+  static Score love() {
+    return new Score(0);
   }
 }
