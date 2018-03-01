@@ -1,25 +1,81 @@
 package io.trydent.tennis;
 
-import org.junit.jupiter.api.BeforeEach;
+import io.trydent.tennis.Match.MatchImpl;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestInstance;
 
 import static com.google.common.truth.Truth.assertThat;
+import static org.junit.jupiter.api.TestInstance.Lifecycle.PER_CLASS;
 
+@TestInstance(PER_CLASS)
 class MatchTest {
-  private Match match;
-
-  @BeforeEach
-  void beforeEach() {
-    this.match = Match.of(
-      "Player One", Score.love(),
-      "Player Two", Score.love()
+  @Test
+  void serverShouldMakePoint() {
+    final Match match = new MatchImpl(
+      new FakeScore(30, 40),
+      new FakeScore(30, 30)
     );
+
+    assertThat(
+      match
+        .serverWinsPoint()
+        .finalScore()
+    ).isEqualTo("Server wins!");
   }
 
   @Test
-  void shouldServerPointThen15_0() {
-    match.serverPoints();
+  void receiverShouldMakePoint() {
+    final Match match = new MatchImpl(
+      new FakeScore(15, 15),
+      new FakeScore(15, 30)
+    );
 
-    assertThat(match.score()).isEqualTo("15:0");
+    assertThat(
+      match
+        .receiverWinsPoint()
+        .finalScore()
+    ).isEqualTo("15:30");
+  }
+
+  @Test
+  void receiverShouldWinsAtAdvantages() {
+    final Match match = new MatchImpl(
+      new FakeScore(40, 40),
+      new FakeScore(46, 47)
+    );
+
+    assertThat(
+      match
+        .receiverWinsPoint()
+        .finalScore()
+    ).isEqualTo("Receiver wins!");
+  }
+
+  @Test
+  void finalScoreShouldBeFortyAndA() {
+    final Match match = new MatchImpl(
+      new FakeScore(40, 40),
+      new FakeScore(40, 46)
+    );
+
+    assertThat(
+      match
+        .receiverWinsPoint()
+        .finalScore()
+    ).isEqualTo("40:A");
+  }
+
+  @Test
+  void finalScoreShouldBeFortyAndForty() {
+    final Match match = new MatchImpl(
+      new FakeScore(46, 40),
+      new FakeScore(40, 40)
+    );
+
+    assertThat(
+      match
+        .receiverWinsPoint()
+        .finalScore()
+    ).isEqualTo("40:40");
   }
 }

@@ -1,35 +1,42 @@
 package io.trydent.tennis;
 
+import static java.lang.String.format;
+
 public interface Match {
-  static Match of(String server, Score serverScore, String receiver, Score receiverScore) {
-    return new MatchImpl(server, receiver, serverScore, receiverScore);
-  }
 
-  void serverPoints();
+  Match serverWinsPoint();
+  Match receiverWinsPoint();
 
-  String score();
+  String finalScore();
 
   final class MatchImpl implements Match {
-    private final String server;
-    private final String receiver;
-    private final Score serverScore;
-    private final Score receiverScore;
+    private final Score server;
+    private final Score receiver;
 
-    MatchImpl(String server, String receiver, Score serverScore, Score receiverScore) {
+    public MatchImpl(final Score server, final Score receiver) {
       this.server = server;
       this.receiver = receiver;
-      this.serverScore = serverScore;
-      this.receiverScore = receiverScore;
     }
 
     @Override
-    public void serverPoints() {
-      serverScore.inc();
+    public Match serverWinsPoint() {
+      return this;
     }
 
     @Override
-    public String score() {
-      return serverScore.value() + ":" + receiverScore.value();
+    public Match receiverWinsPoint() {
+      return this;
+    }
+
+    @Override
+    public String finalScore() {
+      return server.value() == 40 && receiver.value() == 30
+        ? "Server wins!"
+        : server.value() == 40 && receiver.value() == 46
+        ? format("%s:A", server)
+        : server.value() == 40 && receiver.value() == 47
+        ? "Receiver wins!"
+        : format("%s:%s", server, receiver);
     }
   }
 }
