@@ -29,9 +29,9 @@ public interface Score extends Supplier<Integer> {
         ? 15
         : value < 40
         ? 10
-        : value < 45
-        ? 5
-        : 1;
+        : value < 42
+        ? 1
+        : 0;
       return this;
     }
 

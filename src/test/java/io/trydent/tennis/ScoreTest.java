@@ -35,12 +35,12 @@ class ScoreTest {
   }
 
   @Test
-  void shouldIncreaseFourTimesThenFortyFive() {
-    assertThat(score.inc().inc().inc().inc().value()).isEqualTo(45);
+  void shouldIncreaseFourTimesThenFortyOne() {
+    assertThat(score.inc().inc().inc().inc().value()).isEqualTo(41);
   }
 
   @Test
-  void shouldIncreaseMoreThanFourTimesThenFortySeven() {
+  void shouldNotIncreaseMoreThanFortyTwo() {
     assertThat(
       score
         .inc()
@@ -49,7 +49,8 @@ class ScoreTest {
         .inc()
         .inc()
         .inc()
+        .inc()
         .value()
-    ).isEqualTo(47);
+    ).isEqualTo(42);
   }
 }
