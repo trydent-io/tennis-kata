@@ -3,21 +3,11 @@ package io.trydent.tennis;
 import java.util.function.Supplier;
 
 public enum Score implements Supplier<Integer> {
-  Love(0), Fifteen(1), Thirty(2), Forty(3), Advantage(4), MoreAdvantage(5);
-
-  private final int scoring;
-
-  Score(final int scoring) {
-    this.scoring = scoring;
-  }
-
-  public int value() {
-    return scoring;
-  }
+  Love, Fifteen, Thirty, Forty, Advantage, MoreAdvantage;
 
   @Override
   public Integer get() {
-    return value();
+    return ordinal();
   }
 
   public Score inc() {

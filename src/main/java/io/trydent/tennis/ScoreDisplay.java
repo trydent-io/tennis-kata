@@ -2,7 +2,6 @@ package io.trydent.tennis;
 
 import static io.trydent.tennis.Score.Advantage;
 import static io.trydent.tennis.Score.Forty;
-import static io.trydent.tennis.Score.MoreAdvantage;
 import static java.lang.String.format;
 
 public interface ScoreDisplay {
@@ -33,31 +32,18 @@ public interface ScoreDisplay {
     }
 
     private ScoreDisplay point(final boolean forServer) {
-      final ScoreDisplayImpl d = new ScoreDisplayImpl(
-        // check server
-        forServer ? (
-          server == Advantage && server != receiver
-            ? MoreAdvantage
-            : server.inc()
-        ) : server,
-
-        // check receiver
-        !forServer ? (
-          receiver == Advantage && receiver != server
-            ? MoreAdvantage
-            : receiver.inc()
-        ) : receiver
-      );
-      return d.server == d.receiver && d.server == Advantage
-        ? new ScoreDisplayImpl(Forty, Forty)
-        : d;
+      final Score s = forServer ? server.inc() : server;
+      final Score r = !forServer ? receiver.inc() : receiver;
+      return s == r && s == Advantage
+        ? ScoreDisplay.with(Forty, Forty)
+        : ScoreDisplay.with(s, r);
     }
 
     @Override
     public String toString() {
-      return server.value() - receiver.value() >= 2
+      return server.ordinal() - receiver.ordinal() >= 2
         ? "Server wins!"
-        : receiver.value() - server.value() >= 2
+        : receiver.ordinal() - server.ordinal() >= 2
         ? "Receiver wins!"
         : format("%s:%s", server, receiver);
     }
