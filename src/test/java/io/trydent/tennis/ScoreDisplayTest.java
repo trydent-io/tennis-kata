@@ -4,88 +4,88 @@ import org.junit.jupiter.api.Test;
 
 import static com.google.common.truth.Truth.assertThat;
 
-class MatchTest {
+class ScoreDisplayTest {
   @Test
   void serverShouldMakePoint() {
-    final Match match = Match.with(
+    final ScoreDisplay display = ScoreDisplay.with(
       new FakeScore(30, 40),
       new FakeScore(30, 30)
     );
 
     assertThat(
-      match
+      display
         .serverWinsPoint()
-        .finalScore()
+        .toString()
     ).isEqualTo("40:30");
   }
 
   @Test
   void serverShouldWin() {
-    final Match match = Match.with(
+    final ScoreDisplay display = ScoreDisplay.with(
       new FakeScore(40, 41),
       new FakeScore(30, 30)
     );
 
     assertThat(
-      match
+      display
         .serverWinsPoint()
-        .finalScore()
+        .toString()
     ).isEqualTo("Server wins!");
   }
 
   @Test
   void receiverShouldMakePoint() {
-    final Match match = Match.with(
+    final ScoreDisplay display = ScoreDisplay.with(
       new FakeScore(15, 15),
       new FakeScore(15, 30)
     );
 
     assertThat(
-      match
+      display
         .receiverWinsPoint()
-        .finalScore()
+        .toString()
     ).isEqualTo("15:30");
   }
 
   @Test
   void receiverShouldWinsAtAdvantages() {
-    final Match match = Match.with(
+    final ScoreDisplay display = ScoreDisplay.with(
       new FakeScore(40, 40),
       new FakeScore(46, 47)
     );
 
     assertThat(
-      match
+      display
         .receiverWinsPoint()
-        .finalScore()
+        .toString()
     ).isEqualTo("Receiver wins!");
   }
 
   @Test
   void finalScoreShouldBeFortyAndA() {
-    final Match match = Match.with(
+    final ScoreDisplay display = ScoreDisplay.with(
       new FakeScore(40, 40),
       new FakeScore(40, 46)
     );
 
     assertThat(
-      match
+      display
         .receiverWinsPoint()
-        .finalScore()
+        .toString()
     ).isEqualTo("40:A");
   }
 
   @Test
   void finalScoreShouldBeFortyAndForty() {
-    final Match match = Match.with(
+    final ScoreDisplay display = ScoreDisplay.with(
       new FakeScore(46, 40),
       new FakeScore(40, 40)
     );
 
     assertThat(
-      match
+      display
         .receiverWinsPoint()
-        .finalScore()
+        .toString()
     ).isEqualTo("40:40");
   }
 }

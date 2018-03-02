@@ -2,37 +2,35 @@ package io.trydent.tennis;
 
 import static java.lang.String.format;
 
-public interface Match {
-  static Match with(final Score server, final Score receiver) {
-    return new MatchImpl(server, receiver);
+public interface ScoreDisplay {
+  static ScoreDisplay with(final Score server, final Score receiver) {
+    return new ScoreDisplayImpl(server, receiver);
   }
 
-  Match serverWinsPoint();
-  Match receiverWinsPoint();
+  ScoreDisplay serverWinsPoint();
+  ScoreDisplay receiverWinsPoint();
 
-  String finalScore();
-
-  final class MatchImpl implements Match {
+  final class ScoreDisplayImpl implements ScoreDisplay {
     private final Score server;
     private final Score receiver;
 
-    private MatchImpl(final Score server, final Score receiver) {
+    private ScoreDisplayImpl(final Score server, final Score receiver) {
       this.server = server;
       this.receiver = receiver;
     }
 
     @Override
-    public Match serverWinsPoint() {
+    public ScoreDisplay serverWinsPoint() {
       return this;
     }
 
     @Override
-    public Match receiverWinsPoint() {
+    public ScoreDisplay receiverWinsPoint() {
       return this;
     }
 
     @Override
-    public String finalScore() {
+    public String toString() {
       return server.value() == 41 && receiver.value() == 30
         ? "Server wins!"
         : server.value() == 40 && receiver.value() == 46
