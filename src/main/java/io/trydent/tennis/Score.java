@@ -3,8 +3,7 @@ package io.trydent.tennis;
 import java.util.function.Supplier;
 
 public enum Score implements Supplier<Integer> {
-  Love(0), Fifteen(15), Thirty(30), Forty(40), Advantage(41);
-
+  Love(0), Fifteen(15), Thirty(30), Forty(40), Advantage(45), Win(46);
 
   private final int value;
 
@@ -33,6 +32,10 @@ public enum Score implements Supplier<Integer> {
 
   @Override
   public String toString() {
-    return Integer.toString(value);
+    return this == Advantage
+      ? "A"
+      : this == Win
+      ? "Win"
+      : Integer.toString(value);
   }
 }

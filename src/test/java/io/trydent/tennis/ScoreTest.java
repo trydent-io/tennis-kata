@@ -16,27 +16,27 @@ class ScoreTest {
 
   @Test
   void shouldBeZero() {
-    assertThat(score.value()).isEqualTo(0);
+    assertThat(score.toString()).isEqualTo("0");
   }
 
   @Test
   void shouldIncreaseToFifteen() {
-    assertThat(score.inc().value()).isEqualTo(15);
+    assertThat(score.inc().toString()).isEqualTo("15");
   }
 
   @Test
   void shouldIncreseTwiceThenThirty() {
-    assertThat(score.inc().inc().value()).isEqualTo(30);
+    assertThat(score.inc().inc().toString()).isEqualTo("30");
   }
 
   @Test
   void shouldIncreaseTriceThenForty() {
-    assertThat(score.inc().inc().inc().value()).isEqualTo(40);
+    assertThat(score.inc().inc().inc().toString()).isEqualTo("40");
   }
 
   @Test
-  void shouldIncreaseFourTimesThenFortyOne() {
-    assertThat(score.inc().inc().inc().inc().value()).isEqualTo(41);
+  void shouldIncreaseFourTimesThenAdvantage() {
+    assertThat(score.inc().inc().inc().inc().toString()).isEqualTo("A");
   }
 
   @Test
@@ -50,7 +50,7 @@ class ScoreTest {
         .inc()
         .inc()
         .inc()
-        .value()
-    ).isEqualTo(40);
+        .toString()
+    ).isEqualTo("40");
   }
 }
