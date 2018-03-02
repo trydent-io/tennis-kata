@@ -51,4 +51,11 @@ class ScoreDisplayIT {
 
     assertThat(display.receiverPoint().toString()).isEqualTo("40:A");
   }
+
+  @Test
+  void whenAdvantageAndFortyAndReceiverTakesPointThenServerAtForty() {
+    final ScoreDisplay display = ScoreDisplay.with(Advantage, Forty);
+
+    assertThat(display.receiverPoint().toString()).isEqualTo("40:40");
+  }
 }
