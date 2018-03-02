@@ -3,7 +3,7 @@ package io.trydent.tennis;
 import java.util.function.Supplier;
 
 public enum Score implements Supplier<Integer> {
-  Love(0), Fifteen(1), Thirty(2), Forty(3), Advantage(4), Win(5);
+  Love(0), Fifteen(1), Thirty(2), Forty(3), Advantage(4), MoreAdvantage(5);
 
   private final int scoring;
 
@@ -26,8 +26,8 @@ public enum Score implements Supplier<Integer> {
       case Fifteen: return Thirty;
       case Thirty: return Forty;
       case Forty: return Advantage;
-      case Advantage: return Win;
-      default: return Win;
+      case Advantage: return MoreAdvantage;
+      default: return MoreAdvantage;
     }
   }
 

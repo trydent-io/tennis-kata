@@ -1,23 +1,22 @@
 package io.trydent.tennis;
 
+import java.util.function.BiPredicate;
+
 import static io.trydent.tennis.Score.Advantage;
+import static io.trydent.tennis.Score.Forty;
+import static io.trydent.tennis.Score.MoreAdvantage;
 import static io.trydent.tennis.Score.Thirty;
 
-public interface MatchPoint {
-  boolean test();
+public enum MatchPoint implements BiPredicate<Score, Score> {
+  IsMatchPoint;
 
-  final class MatchPointImpl implements MatchPoint {
-    private final Score server;
-    private final Score receiver;
-
-    MatchPointImpl(Score server, Score receiver) {
-      this.server = server;
-      this.receiver = receiver;
-    }
-
-    @Override
-    public boolean test() {
-      return (server == Advantage && receiver == Thirty) || (server == Thirty && receiver == Advantage);
-    }
+  @Override
+  public boolean test(Score server, Score receiver) {
+    return
+      (server == Advantage && receiver == Thirty)
+        || (server == Thirty && receiver == Advantage)
+        || (server == MoreAdvantage && receiver == Forty)
+        || (server == Forty && receiver == MoreAdvantage);
   }
+
 }
