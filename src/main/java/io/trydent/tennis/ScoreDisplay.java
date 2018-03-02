@@ -24,22 +24,18 @@ public interface ScoreDisplay {
 
     @Override
     public ScoreDisplay serverPoint() {
-      server = server == Advantage
-        ? Win
-        : server.inc();
-      if (server == receiver && server == Advantage) {
-        server = Forty;
-        receiver = Forty;
-      }
-      return this;
+      return point(true);
     }
 
     @Override
     public ScoreDisplay receiverPoint() {
-      receiver = receiver == Advantage
-        ? Win
-        : receiver.inc();
-      if (server == receiver && receiver == Advantage) {
+      return point(false);
+    }
+
+    private ScoreDisplay point(final boolean forServer) {
+      server = forServer ? (server == Advantage ? Win : server.inc()) : server;
+      receiver = !forServer ? (receiver == Advantage ? Win : receiver.inc()) : receiver;
+      if (server == receiver && server == Advantage) {
         server = Forty;
         receiver = Forty;
       }
