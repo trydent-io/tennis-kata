@@ -18,5 +18,4 @@ public enum MatchPoint implements BiPredicate<Score, Score> {
         || (server == MoreAdvantage && receiver == Forty)
         || (server == Forty && receiver == MoreAdvantage);
   }
-
 }
