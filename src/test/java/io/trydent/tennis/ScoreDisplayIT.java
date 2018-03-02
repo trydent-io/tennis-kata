@@ -44,4 +44,11 @@ class ScoreDisplayIT {
 
     assertThat(display.receiverPoint().toString()).isEqualTo("Receiver wins!");
   }
+
+  @Test
+  void whenDeuceAndReceiverTakesPointThenWins() {
+    final ScoreDisplay display = ScoreDisplay.with(Forty, Forty);
+
+    assertThat(display.receiverPoint().toString()).isEqualTo("40:A");
+  }
 }

@@ -1,9 +1,7 @@
 package io.trydent.tennis;
 
 import static io.trydent.tennis.Score.Advantage;
-import static io.trydent.tennis.Score.Thirty;
 import static io.trydent.tennis.Score.Win;
-import static java.lang.Math.*;
 import static java.lang.String.format;
 
 public interface ScoreDisplay {
