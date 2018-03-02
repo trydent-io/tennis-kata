@@ -33,7 +33,7 @@ public interface Match {
 
     @Override
     public String finalScore() {
-      return server.value() == 40 && receiver.value() == 30
+      return server.value() == 41 && receiver.value() == 30
         ? "Server wins!"
         : server.value() == 40 && receiver.value() == 46
         ? format("%s:A", server)

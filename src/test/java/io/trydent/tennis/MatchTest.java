@@ -16,6 +16,20 @@ class MatchTest {
       match
         .serverWinsPoint()
         .finalScore()
+    ).isEqualTo("40:30");
+  }
+
+  @Test
+  void serverShouldWin() {
+    final Match match = Match.with(
+      new FakeScore(40, 41),
+      new FakeScore(30, 30)
+    );
+
+    assertThat(
+      match
+        .serverWinsPoint()
+        .finalScore()
     ).isEqualTo("Server wins!");
   }
 
