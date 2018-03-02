@@ -1,6 +1,7 @@
 package io.trydent.tennis;
 
 import static io.trydent.tennis.Score.Advantage;
+import static io.trydent.tennis.Score.Forty;
 import static io.trydent.tennis.Score.Win;
 import static java.lang.String.format;
 
@@ -32,7 +33,7 @@ public interface ScoreDisplay {
     }
 
     private ScoreDisplay point(final boolean forServer) {
-      return new ScoreDisplayImpl(
+      final ScoreDisplayImpl d = new ScoreDisplayImpl(
         // check server
         forServer ? (
           server == Advantage && server != receiver
@@ -47,6 +48,9 @@ public interface ScoreDisplay {
             : receiver.inc()
         ) : receiver
       );
+      return d.server == d.receiver && d.server == Advantage
+        ? new ScoreDisplayImpl(Forty, Forty)
+        : d;
     }
 
     @Override
