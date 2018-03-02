@@ -11,7 +11,7 @@ class ScoreTest {
 
   @BeforeEach
   void beforeEach() {
-    score = Score.love();
+    score = Score.Love;
   }
 
   @Test
@@ -40,7 +40,7 @@ class ScoreTest {
   }
 
   @Test
-  void shouldNotIncreaseMoreThanFortyTwo() {
+  void shouldDecreaseToForty() {
     assertThat(
       score
         .inc()
@@ -51,6 +51,6 @@ class ScoreTest {
         .inc()
         .inc()
         .value()
-    ).isEqualTo(42);
+    ).isEqualTo(40);
   }
 }

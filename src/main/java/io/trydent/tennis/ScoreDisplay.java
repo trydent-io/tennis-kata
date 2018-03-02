@@ -11,8 +11,8 @@ public interface ScoreDisplay {
   ScoreDisplay receiverPoint();
 
   final class ScoreDisplayImpl implements ScoreDisplay {
-    private final Score server;
-    private final Score receiver;
+    private Score server;
+    private Score receiver;
 
     private ScoreDisplayImpl(final Score server, final Score receiver) {
       this.server = server;
@@ -21,13 +21,13 @@ public interface ScoreDisplay {
 
     @Override
     public ScoreDisplay serverPoint() {
-      server.inc();
+      server = server.inc();
       return this;
     }
 
     @Override
     public ScoreDisplay receiverPoint() {
-      receiver.inc();
+      receiver = receiver.inc();
       return this;
     }
 
