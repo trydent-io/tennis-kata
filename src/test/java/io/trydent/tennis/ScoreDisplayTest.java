@@ -14,7 +14,7 @@ class ScoreDisplayTest {
 
     assertThat(
       display
-        .serverWinsPoint()
+        .serverPoint()
         .toString()
     ).isEqualTo("40:30");
   }
@@ -28,7 +28,7 @@ class ScoreDisplayTest {
 
     assertThat(
       display
-        .serverWinsPoint()
+        .serverPoint()
         .toString()
     ).isEqualTo("Server wins!");
   }
@@ -42,7 +42,7 @@ class ScoreDisplayTest {
 
     assertThat(
       display
-        .receiverWinsPoint()
+        .receiverPoint()
         .toString()
     ).isEqualTo("15:30");
   }
@@ -56,7 +56,7 @@ class ScoreDisplayTest {
 
     assertThat(
       display
-        .receiverWinsPoint()
+        .receiverPoint()
         .toString()
     ).isEqualTo("Receiver wins!");
   }
@@ -70,7 +70,7 @@ class ScoreDisplayTest {
 
     assertThat(
       display
-        .receiverWinsPoint()
+        .receiverPoint()
         .toString()
     ).isEqualTo("40:A");
   }
@@ -84,7 +84,7 @@ class ScoreDisplayTest {
 
     assertThat(
       display
-        .receiverWinsPoint()
+        .receiverPoint()
         .toString()
     ).isEqualTo("40:40");
   }

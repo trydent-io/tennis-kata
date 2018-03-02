@@ -6,9 +6,19 @@ public interface Score extends Supplier<Integer> {
   static Score love() {
     return new ScoreImpl(0);
   }
+  static Score fifteen() {
+    return new ScoreImpl(15);
+  }
+  static Score thirty() {
+    return new ScoreImpl(30);
+  }
+  static Score forty() {
+    return new ScoreImpl(40);
+  }
 
   Score inc();
   int value();
+
   default Integer get() { return value(); }
 
   final class ScoreImpl implements Score {

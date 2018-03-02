@@ -7,8 +7,8 @@ public interface ScoreDisplay {
     return new ScoreDisplayImpl(server, receiver);
   }
 
-  ScoreDisplay serverWinsPoint();
-  ScoreDisplay receiverWinsPoint();
+  ScoreDisplay serverPoint();
+  ScoreDisplay receiverPoint();
 
   final class ScoreDisplayImpl implements ScoreDisplay {
     private final Score server;
@@ -20,12 +20,14 @@ public interface ScoreDisplay {
     }
 
     @Override
-    public ScoreDisplay serverWinsPoint() {
+    public ScoreDisplay serverPoint() {
+      server.inc();
       return this;
     }
 
     @Override
-    public ScoreDisplay receiverWinsPoint() {
+    public ScoreDisplay receiverPoint() {
+      receiver.inc();
       return this;
     }
 
