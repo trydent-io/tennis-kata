@@ -29,7 +29,7 @@ public enum Score implements Supplier<Integer> {
       case Thirty: return 30 + "";
       case Forty: return 40 + "";
       case Advantage: return "A";
-      default: return "Win";
+      default: return "A+";
     }
   }
 }
