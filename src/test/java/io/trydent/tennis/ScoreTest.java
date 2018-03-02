@@ -15,21 +15,6 @@ class ScoreTest {
   }
 
   @Test
-  void shouldBeZero() {
-    assertThat(score.toString()).isEqualTo("0");
-  }
-
-  @Test
-  void shouldIncreaseToFifteen() {
-    assertThat(score.inc().toString()).isEqualTo("15");
-  }
-
-  @Test
-  void shouldIncreseTwiceThenThirty() {
-    assertThat(score.inc().inc().toString()).isEqualTo("30");
-  }
-
-  @Test
   void shouldIncreaseTriceThenForty() {
     assertThat(score.inc().inc().inc().toString()).isEqualTo("40");
   }
@@ -40,7 +25,7 @@ class ScoreTest {
   }
 
   @Test
-  void shouldDecreaseToForty() {
+  void shouldNotIncreaseBeyondWin() {
     assertThat(
       score
         .inc()
@@ -51,6 +36,6 @@ class ScoreTest {
         .inc()
         .inc()
         .toString()
-    ).isEqualTo("40");
+    ).isEqualTo("Win");
   }
 }

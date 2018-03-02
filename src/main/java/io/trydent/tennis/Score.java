@@ -26,7 +26,8 @@ public enum Score implements Supplier<Integer> {
       case Fifteen: return Thirty;
       case Thirty: return Forty;
       case Forty: return Advantage;
-      default: return Forty;
+      case Advantage: return Win;
+      default: return Win;
     }
   }
 
